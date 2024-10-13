@@ -1,0 +1,46 @@
+ion-button{
+    --border-width: 1px;
+    --border-color: #CCC;
+}
+
+h2{
+    font-size: 1rem;
+}
+
+ion-item{
+    --padding-start: 0;
+}
+
+.address{
+    border-bottom: 1px solid #CCC;
+    padding-bottom: 1rem;
+
+    .address-group{
+        margin-bottom: 1rem;
+    }
+}
+
+.payment-methods{
+
+
+    .payment-methods-group{
+        margin-bottom: 1rem;
+    }
+}
+
+.paysucess{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+
+    p{
+        color: var(--ion-color-primary);
+    }
+
+
+    ion-icon{
+        font-size: 1.5rem;
+        color: var(--ion-color-primary);
+    }
+}

@@ -1,0 +1,27 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <div class="header-content"><img width="100" src="assets/logo.png"></div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-content [fullscreen]="true" class="ion-padding">
+    <ion-text class="ion-text-center">
+      <h2>Olá, faça seu cadastro</h2>
+      <p>Preencha os campos abaixo</p>
+    </ion-text>
+    <form>
+      <ion-input fill="outline" type="email" name="email" [(ngModel)]="email" placeholder="Digite seu e-mail">
+        <ion-icon slot="start" name="mail" aria-hidden="true"></ion-icon>
+      </ion-input>
+      <ion-input  type="password" fill="outline" name="senha" [(ngModel)]="senha" placeholder="Digite sua senha">
+        <ion-icon slot="start" name="lock-closed" aria-hidden="true"></ion-icon>
+      </ion-input>
+      <ion-button expand="block" type="submit" (click)="criarLogin()" fill="outline">Cadastrar</ion-button>
+    </form>
+
+    <ion-text class="ion-text-center">
+      <p>Já possui login? <a [routerLink]="['/login']" routerLinkActive="router-link-active" >Login</a></p>
+    </ion-text>
+  </ion-content>
+</ion-content>

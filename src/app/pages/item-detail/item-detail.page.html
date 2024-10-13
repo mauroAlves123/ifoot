@@ -1,0 +1,54 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <div class="header-content">
+      <ion-buttons>
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+      <ion-title class="ion-text-center">
+        {{ item?.name }}
+      </ion-title>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <!-- <img [src]="item?.image" alt="{{ item?.name }}" *ngIf="item"> -->
+  <img src="https://png.pngtree.com/png-vector/20230830/ourmid/pngtree-3d-burger-illustration-png-image_9187823.png">
+
+  <div class="item-detail-description" *ngIf="item">
+    <div class="item-detail-header">
+      <div class="feedback">
+        <ion-icon name="star"></ion-icon>
+        <ion-text>
+          {{ item.stars }} Avaliação
+        </ion-text>
+      </div>
+    </div>
+    <div class="item-detail-text">
+      <ion-text>
+        <p>{{ item.description }}</p>
+      </ion-text>
+    </div>
+    <div class="item-detail-footer">
+      <div>
+        <ion-button (click)="addToCart()" fill="outline">
+          <ion-icon slot="start" name="cart"></ion-icon>
+          <ion-text>
+            <span>Adicionar</span>
+          </ion-text>
+        </ion-button>
+      </div>
+      <div class="item-detail-amount">
+        <ion-button shape="round" fill="clear" (click)="decreaseQuantity()">
+          <ion-icon slot="icon-only" name="remove"></ion-icon>
+        </ion-button>
+        <ion-text>
+          <span>{{ quantity }}</span>
+        </ion-text>
+        <ion-button shape="round" fill="clear" (click)="increaseQuantity()">
+          <ion-icon slot="icon-only" name="add"></ion-icon>
+        </ion-button>
+      </div>
+    </div>
+  </div>
+</ion-content>

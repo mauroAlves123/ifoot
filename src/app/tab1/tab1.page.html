@@ -1,0 +1,57 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <div class="header-content">
+      <img width="100" src="assets/logo.png">
+<!--       <div>
+        <ion-button fill="clear" routerLink="/tabs/tab3">
+          <ion-icon slot="icon-only" name="cart" [color]="cartItemsCount > 0 ? 'primary' : 'medium'"></ion-icon>
+        </ion-button>
+        <ion-badge *ngIf="cartItemsCount > 0" color="primary">{{ cartItemsCount }}</ion-badge>
+      </div> -->
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="search-content">
+    <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="filterItems()" debounce="500"></ion-searchbar>
+  </div>
+  <div class="categories-content">
+    <ion-segment [(ngModel)]="selectedCategory" (ionChange)="filterItems()">
+      <ion-segment-button *ngFor="let category of categories" [value]="category">
+        {{ category }}
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+  <div class="list-items">
+    <div class="loading"  *ngIf="isLoading">
+      <ion-spinner></ion-spinner>
+    </div>
+    <div *ngIf="!isLoading">
+      <ion-card *ngFor="let item of filteredItems">
+        <img src="https://png.pngtree.com/png-vector/20230830/ourmid/pngtree-3d-burger-illustration-png-image_9187823.png" [routerLink]="['/item-detail/', item.id]">
+        <ion-card-header [routerLink]="['/item-detail/', item.id]">
+          <ion-card-title>{{ item.name }}</ion-card-title>
+          <ion-card-subtitle>R$ {{ item.price.toFixed(2) }}</ion-card-subtitle>
+          <ion-text>
+            {{ item.description }}
+          </ion-text>
+        </ion-card-header>
+        <ion-card-content>
+          <div class="feedback" [routerLink]="['/item-detail/', item.id]">
+            <ion-icon name="star"></ion-icon>
+            {{ item.stars }}
+          </div>
+          <div>
+            <ion-button fill="clear" (click)="addToCart(item)">
+              <ion-icon name="cart-outline" color="primary"></ion-icon>
+            </ion-button>
+            <ion-button fill="clear" (click)="toggleFavorite(item)">
+              <ion-icon [name]="item.favorite ? 'heart' : 'heart-outline'" color="primary"></ion-icon>
+            </ion-button>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
+</ion-content>

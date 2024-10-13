@@ -1,0 +1,100 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Pagamento
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div *ngIf="paySucess" class="paysucess">
+    <p>Pagamento feito com sucesso</p>
+    <ion-icon name="checkmark-done-outline"></ion-icon>
+  </div>
+  <ion-list *ngIf="!paySucess">
+    <ion-item>
+      <ion-label>Pedido:</ion-label>
+      <ion-label slot="end">R$ {{ totalAmount.toFixed(2) }}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Taxa de Entrega:</ion-label>
+      <ion-label slot="end">R$ {{ delivery.toFixed(2) }}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Tempo de Entrega:</ion-label>
+      <ion-label slot="end">{{ deliveryTime }} minutos</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Total:</ion-label>
+      <ion-label slot="end">R$ {{ total }}</ion-label>
+    </ion-item>
+  </ion-list>
+  <div *ngIf="!paySucess">
+    <ion-text class="ion-text-center">
+      <h2>Endereço</h2>
+    </ion-text>
+    <form>
+      <div *ngIf="logradouro">
+        <div>
+          <ion-label>Endereço</ion-label>
+          <ion-input label-placement="floating" fill="outline" type="text" [(ngModel)]="logradouro" name="logradouro"></ion-input>
+        </div>
+        <div>
+          <ion-label>N°</ion-label>
+          <ion-input label-placement="floating" fill="outline" type="text" [(ngModel)]="numero" name="numero"></ion-input>
+        </div>
+        <div>
+          <ion-label>Complemento</ion-label>
+          <ion-input label-placement="floating" fill="outline" type="text" [(ngModel)]="complemento" name="complemento"></ion-input>
+        </div>
+      </div>
+      <div>
+        <ion-label>Cep</ion-label>
+        <ion-input label-placement="floating" fill="outline" type="text" [(ngModel)]="cep" name="cep"></ion-input>
+      </div>
+
+      <ion-button expand="block" shape="rounded" fill="outline" (click)="buscarCEP()">Buscar</ion-button>
+    </form>
+  </div>
+
+  <div *ngIf="!paySucess">
+    <div class="payment-methods">
+      <ion-text class="ion-text-center">
+        <h2>Método de pagamento</h2>
+      </ion-text>
+      <ion-segment [(ngModel)]="selectedPaymentMethod" (ionChange)="handlePaymentMethodChange()">
+        <ion-segment-button *ngFor="let method of paymentMethods" [value]="method">
+          {{ method }}
+        </ion-segment-button>
+      </ion-segment>
+      <div *ngIf="selectedPaymentMethod === 'Cartão'">
+        <div class="payment-methods-group">
+          <ion-label>Nome</ion-label>
+          <ion-input label-placement="floating" fill="outline" type="text"></ion-input>
+        </div>
+        <div class="payment-methods-group">
+          <ion-label>Número do Cartão:</ion-label>
+          <ion-input label-placement="floating" fill="outline" type="text"></ion-input>
+        </div>
+        <div class="payment-methods-group">
+          <ion-label>Validade</ion-label>
+          <ion-input label-placement="floating" fill="outline" type="text"></ion-input>
+        </div>
+        <div class="payment-methods-group">
+          <ion-label>CVV</ion-label>
+          <ion-input label-placement="floating" fill="outline" type="text"></ion-input>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="selectedPaymentMethod === 'Pix'">
+      <div class="payment-methods-group">
+        <ion-label>Código Pix:</ion-label>
+        <ion-input label-placement="floating" fill="outline" type="text" [value]="pixCode" readonly></ion-input>
+      </div>
+    </div>
+    <ion-button expand="block" shape="rounded" (click)="pay()" fill="outline">Pagar</ion-button>
+  </div>
+</ion-content>

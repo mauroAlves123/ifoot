@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <div class="header-content">
+      <img width="100" src="assets/logo.png">
+    </div>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
+
+  <div class="avatar" *ngIf="user; elseUser">
+    <ion-avatar>
+      <img [src]="user.photoURL ?? 'https://ionicframework.com/docs/img/demos/avatar.svg' " [alt]="user.displayName">
+    </ion-avatar>
+    <ion-text class="ion-text-center">
+      <h1>{{ user.displayName ?? user.email }}</h1>
+    </ion-text>
+  </div>
+  <ng-template #elseUser>
+    <div class="avatar">
+      <ion-avatar>
+        <img src="https://ionicframework.com/docs/img/demos/avatar.svg" alt="Imagem do Usuário">
+      </ion-avatar>
+      <ion-text class="ion-text-center">
+        <h1>Yuri</h1>
+      </ion-text>
+    </div>
+  </ng-template>
+  <div class="avatar-list-config">
+    <ion-button fill="outline" (click)="logoutGoogle()">
+      <ion-icon slot="start" name="log-out"></ion-icon>
+      Sair
+    </ion-button>
+  </div>
+</ion-content>

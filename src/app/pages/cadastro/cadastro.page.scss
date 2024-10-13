@@ -1,0 +1,53 @@
+.header-content{
+    padding: 1rem;
+    display: flex;
+    margin: auto;
+    justify-content: center;
+}
+
+.header-md{
+    box-shadow: none !important;
+}
+
+form{
+    ion-input{
+        margin-bottom: 1rem;
+    }
+}
+
+
+.separador{
+    text-align: center;
+    position: relative;
+    z-index: 10;
+    margin: 2rem 0;
+
+    p{
+        font-size: 13px;
+    }
+    
+    &::after, &::before{
+        content: '';
+        position: absolute;
+        display: inline-block;
+        width: 45%;
+        height: 2px;
+        background-color: #444;
+        top: 7px;
+        
+    }
+
+    &::after{
+        right: 0;
+    }
+
+    &::before{
+        left: 0;
+    }
+}
+
+ion-button{
+    --border-width: 1px;
+    --border-color: #CCC;
+    margin-bottom: 1rem;
+}

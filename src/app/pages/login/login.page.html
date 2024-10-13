@@ -1,0 +1,33 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <div class="header-content"><img width="100" src="assets/logo.png"></div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-content [fullscreen]="true" class="ion-padding">
+    <ion-text class="ion-text-center">
+      <h2>Bem-vindo ao Ifoot</h2>
+      <p>Faça seu login abaixo e faça seu pedido</p>
+    </ion-text>
+    <form>
+      <ion-input fill="outline" type="email" name="email" [(ngModel)]="email" placeholder="Digite seu e-mail">
+        <ion-icon slot="start" name="mail" aria-hidden="true"></ion-icon>
+      </ion-input>
+      <ion-input  type="password" fill="outline" name="senha" [(ngModel)]="senha" placeholder="Digite sua senha">
+        <ion-icon slot="start" name="lock-closed" aria-hidden="true"></ion-icon>
+      </ion-input>
+      <ion-button expand="block" type="submit" (click)="entrarLogin()" fill="outline">Entrar</ion-button>
+    </form>
+
+    <div>
+      <ion-button expand="block" (click)="loginGoogle()" fill="outline">
+        <ion-icon slot="start" name="logo-google"></ion-icon>
+        Entre com o google
+      </ion-button>
+    </div>
+    <ion-text class="ion-text-center">
+      <p>Ainda não possui cadastro? <a [routerLink]="['/cadastro']" routerLinkActive="router-link-active" >Cadastrar</a></p>
+    </ion-text>
+  </ion-content>
+</ion-content>

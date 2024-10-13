@@ -1,0 +1,7 @@
+{
+  "name": "ifoot",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
